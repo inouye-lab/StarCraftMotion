@@ -1,0 +1,8 @@
+name: starcraft-training
+channels:
+  - conda-forge
+dependencies:
+  - python=3.11.9
+  - pip
+  - pip:
+    - -r requirements-gpu.txt

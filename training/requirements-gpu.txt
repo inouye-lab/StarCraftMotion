@@ -1,0 +1,6 @@
+--extra-index-url https://download.pytorch.org/whl/cu121
+--find-links https://data.pyg.org/whl/torch-2.4.0+cu121.html
+torch==2.4.1+cu121
+torch-scatter==2.1.2+pt24cu121
+torch-cluster==1.6.3+pt24cu121
+-r requirements-common.txt

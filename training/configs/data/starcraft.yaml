@@ -1,0 +1,23 @@
+_target_: src.starcraft.datamodules.sc_datamodule.SCDataModule
+dataset_root: ${paths.sc_dataset_root}
+train_batch_size: 4
+val_batch_size: 4
+test_batch_size: 4
+num_workers: 4
+shuffle: true
+pin_memory: true
+persistent_workers: true
+min_future_alive: 8
+train_map_names:
+  - Abyssal_Reef_LE
+  - Acolyte_LE
+  - Ascension_to_Aiur_LE
+  - Interloper_LE
+  - Mech_Depot_LE
+val_map_names:
+  - Abyssal_Reef_LE
+  - Acolyte_LE
+  - Ascension_to_Aiur_LE
+  - Interloper_LE
+  - Mech_Depot_LE
+test_map_names: null

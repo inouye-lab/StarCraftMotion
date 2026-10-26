@@ -1,0 +1,6 @@
+root_dir: ${hydra:runtime.cwd}
+log_dir: ${paths.root_dir}/logs/
+output_dir: ${hydra:runtime.output_dir}
+sc_dataset_root: ${paths.root_dir}/data/hdf5
+sc_motion_dict: ${paths.root_dir}/assets/motion_dictionary_final.pkl
+sc_map_data: ${paths.root_dir}/assets/static

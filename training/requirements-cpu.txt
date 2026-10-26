@@ -1,0 +1,6 @@
+--extra-index-url https://download.pytorch.org/whl/cpu
+--find-links https://data.pyg.org/whl/torch-2.4.0+cpu.html
+torch==2.4.1+cpu
+torch-scatter==2.1.2+pt24cpu
+torch-cluster==1.6.3+pt24cpu
+-r requirements-common.txt

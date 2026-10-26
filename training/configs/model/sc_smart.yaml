@@ -1,0 +1,65 @@
+_target_: src.starcraft.model.sc_smart.SCSMART
+model_config:
+  lr: 0.0005
+  lr_warmup_steps: 0
+  lr_total_steps: ${trainer.max_epochs}
+  lr_min_ratio: 0.05
+  n_rollout_closed_val: 32
+  n_vis_batch: 0
+  n_vis_scenario: 2
+  n_vis_rollout: 1
+  vis_observer_player: both
+  val_open_loop: true
+  val_closed_loop: false
+  closed_loop_rollout_modes: [own, opponent]   # subset of [own, opponent]
+  # --- Closed-loop rollout save (offline metric harness) ---
+  save_closed_rollouts: false
+  rollout_save_dir: null                          # null → ${hydra.runtime.output_dir}/rollouts
+  save_rollout_modes: [own, opponent]
+  save_rollout_observers: [1, 2]
+  rollout_save_precision: fp16                    # fp16 | fp32
+  rollout_dataset_version: ${data.dataset_root}   # interpolated; helper takes basename
+  token_processor:
+    motion_dict_file: ${paths.sc_motion_dict}
+    map_data_dir: ${paths.sc_map_data}
+    agent_token_sampling:
+      num_k: 1
+      temp: 1.0
+  validation_rollout_sampling:
+    criterium: topk_prob
+    num_k: 5
+    temp: 1.0
+  training_rollout_sampling:
+    criterium: topk_prob
+    num_k: -1
+    temp: 1.0
+  decoder:
+    hidden_dim: 64
+    num_freq_bands: 64
+    num_heads: 4
+    head_dim: 8
+    dropout: 0.1
+    hist_drop_prob: 0.1
+    num_map_layers: 3
+    pl2a_radius: 10
+    num_agent_layers: 4
+    a2a_radius: 10
+    time_span: 48
+    num_historical_steps: 17
+    num_future_steps: 128
+    num_concepts: 16
+    use_action_target_input: true
+    closed_loop_oracle_intent_input: false
+    num_action_classes: 11
+  use_aux_loss: true
+  action_target_loss:
+    has_action_weight: 1.0
+    has_target_pos_weight: 1.0
+    action_weight: 1.0
+    target_weight: 1.0
+  training_loss:
+    use_gt_raw: true
+    gt_thresh_scale_length: -1.0
+    label_smoothing: 0.1
+    rollout_as_gt: false
+  finetune: false
